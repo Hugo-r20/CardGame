@@ -56,6 +56,29 @@ namespace CardGame
                     Thread.Sleep(10);
                     //Console.WriteLine("");
                 });
+                /*
+                    for(int i = 0; i< 10000; i ++)
+                    {
+                        List<Joueur> listJoueurs = new List<Joueur>();
+
+                        listJoueurs.Add(new Joueur("Player 1", 2));
+                        listJoueurs.Add(new Joueur("Player 2", 2));
+                        listJoueurs.Add(new Joueur("Bank", 3));
+
+                        Croupier croupier = new Croupier(listJoueurs);
+                        croupier.distributerCartes();
+
+                        foreach (Joueur joueur in listJoueurs)
+                        {
+                            croupier.calculerScore(joueur);
+                        }
+
+                        string winnerName = croupier.designerVainqueur();
+                        scoreTable[winnerName] += 1;
+                        Thread.Sleep(10);
+                        //Console.WriteLine("");
+                    }
+                */
                 evt();
             }));
 
@@ -63,7 +86,7 @@ namespace CardGame
             {
                 DELG d = (DELG)((System.Runtime.Remoting.Messaging.AsyncResult)async).AsyncDelegate;
                 d.EndInvoke(async);
-                Console.Write("Fin des traveaux");
+                Console.WriteLine("Fin des traveaux");
             }, dlG_time);
 
             dlg_multiCast = thd_game.Start;
@@ -74,6 +97,16 @@ namespace CardGame
                 Console.WriteLine("Travaux en cours...");
                 Thread.Sleep(5000);
             }
+
+            Console.WriteLine("==================================");
+            Console.WriteLine("");
+            foreach(var scoreLine in scoreTable)
+            {
+                Console.WriteLine("Le nombre de victoires de " + scoreLine.Key + " est " + scoreLine.Value);
+            }
+            Console.WriteLine("");
+            Console.WriteLine("==================================");
+
             Console.Read();
         }
 
