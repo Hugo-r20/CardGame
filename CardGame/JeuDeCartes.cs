@@ -8,7 +8,7 @@ namespace CardGame
 {
     class JeuDeCartes
     {
-        private List<Carte> jeuDeCartes;
+        private List<Carte> jeuDeCartes = new List<Carte>();
         private List<string> couleurs = new List<string> { "Pique", "Trefle", "Coeur", "Carreau"};
         private List<string> figures = new List<string> { "Valet", "Reine", "Roi"};
 
@@ -19,12 +19,12 @@ namespace CardGame
             {
                 for (int i = 1; i<11; i++)
                 {
-
+                    jeuDeCartes.Add(new Carte(i.ToString(), couleur));
                 }
 
                 foreach (string figure in figures)
                 {
-
+                    jeuDeCartes.Add(new Carte(figure, couleur));
                 }
             }
            
@@ -34,6 +34,7 @@ namespace CardGame
         {
             get { return jeuDeCartes; }
         }
+
 
     }
 }
